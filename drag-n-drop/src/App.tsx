@@ -77,6 +77,8 @@ function App() {
   return (
     <>
       <div className='quadrant-container'>
+        {/* Map through quadrants and render any 
+        shapes that are in them, add drag/drop behaviour for each */}
         {quadrants
         .map((quadrant) => 
           <div className='quadrant' id={`${quadrant.id}`}

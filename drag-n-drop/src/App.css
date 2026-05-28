@@ -38,7 +38,7 @@ html, body, #root {
 }
 
 .hexagon {
-  background-color: forestgreen;
+  background-color: pink;
   /* Hexagon shape using clip-path, values found using online shape generator for clip-path
     https://bennettfeely.com/clippy/
   */
@@ -46,5 +46,13 @@ html, body, #root {
 }
 
 .square {
+  background-color: red;
+}
 
+.triangle {
+  background-color: blue;
+  /* Triangle values found using online shape generator for clip-path
+    https://bennettfeely.com/clippy/
+  */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
