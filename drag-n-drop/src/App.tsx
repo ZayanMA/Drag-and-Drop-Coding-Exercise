@@ -47,8 +47,10 @@ function App() {
     {id: "shape-5", quadrant: "top-left"},
   ]);
 
+  // Track which shape is beingn dragged
   const [draggedShapeID, setDraggedShapeID] = useState<string | null>(null);
 
+  // Helper function to render shapes given a quadrant id
   function renderShapes(quadrantId: string) {
     return shapeLocations
     .filter((shape) => shape.quadrant === quadrantId)
@@ -59,6 +61,7 @@ function App() {
     )
   }
 
+  // Helper function to update shape location for dragged shape to a target quadrant
   function handleDrop(targetQuadrant: QuadrantId): void {
     if(draggedShapeID == null) {
       return;
