@@ -20,6 +20,14 @@ function App() {
     {id: "shape-5", quadrant: "top-left"},
   ]);
 
+  function renderShapes(quadrantId: string) {
+    return shapeLocations
+    .filter((shape) => shape.quadrant === quadrantId)
+    .map((shape) => 
+      <div key={shape.id} className={`${shapeMapping[quadrantId]}`} draggable/>
+    )
+  }
+
   return (
     <>
       <div className='quadrant-container'>
