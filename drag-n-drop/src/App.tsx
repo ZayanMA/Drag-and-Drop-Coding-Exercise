@@ -55,7 +55,7 @@ function App() {
     return shapeLocations
     .filter((shape) => shape.quadrant === quadrantId)
     .map((shape) => 
-      <div key={shape.id} className={`${shapeMapping[quadrantId]}`} draggable
+      <div key={shape.id} className={`shape ${shapeMapping[quadrantId]}`} draggable
         onDragStart={() => setDraggedShapeID(shape.id)}
       />
     )

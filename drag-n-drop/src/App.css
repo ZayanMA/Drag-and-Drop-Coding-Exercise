@@ -27,9 +27,24 @@ html, body, #root {
   gap: 1rem;
 }
 
+.shape {
+  height: 5rem;
+  width: 5rem;
+}
+
 .circle {
   background-color: forestgreen;
   border-radius: 50%;
-  height: 5rem;
-  width: 5rem;
+}
+
+.hexagon {
+  background-color: forestgreen;
+  /* Hexagon shape using clip-path, values found using online shape generator for clip-path
+    https://bennettfeely.com/clippy/
+  */
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.square {
+
 }
