@@ -3,6 +3,33 @@ import './App.css'
 
 function App() {
 
+  // QuadrantId allowed values
+  type QuadrantId =
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right"
+
+  // ShapeLocation Type, limits possible quadrant values
+  type ShapeLocation = {
+    id: string;
+    quadrant: QuadrantId;
+  }
+
+  // Quadrant type
+  type Quadrant = {
+    id: QuadrantId;
+    label: string;
+  }
+
+  // quadrants array
+  const quadrants: Quadrant[] = [
+    {id: "top-left", label: "Top Left"},
+    {id: "top-right", label: "Top Right"},
+    {id: "bottom-left", label: "Bottom Left"},
+    {id: "bottom-right", label: "Bottom Right"},
+  ]
+
   // Mapping between a quadrant id and what shape it represents
   const shapeMapping = { 
     "top-left": "circle",
@@ -12,7 +39,7 @@ function App() {
   };
 
   // useState to store and update shape locations
-  const [shapeLocations, setShapeLocation] = useState([
+  const [shapeLocations, setShapeLocation] = useState<ShapeLocation[]>([
     {id: "shape-1", quadrant: "top-left"},
     {id: "shape-2", quadrant: "top-left"},
     {id: "shape-3", quadrant: "top-left"},
@@ -31,21 +58,12 @@ function App() {
   return (
     <>
       <div className='quadrant-container'>
-        <div className='quadrant' id='top-left'>
-          Top Left
-
-          {shapeLocations
-            .filter((shape) => shape.quadrant === "top-left")
-            .map((shape) => 
-              <div key={shape.id} className='circle' draggable>
-                {shape.id}
-                </div>
-            )
-          }
+        {quadrants
+        .map((quadrant) => 
+          <div className='quadrant' id={`${quadrant.id}`}>
+            {renderShapes(quadrant.id)}
           </div>
-        <div className='quadrant' id='top-right'>Top Right</div>
-        <div className='quadrant' id='bottom-left'>Bottom Left</div>
-        <div className='quadrant' id='bottom-right'>Bottom Right</div>
+        )}
       </div>
     </>
   )
