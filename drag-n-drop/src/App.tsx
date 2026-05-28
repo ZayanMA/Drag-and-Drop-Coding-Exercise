@@ -21,7 +21,7 @@ function App() {
     id: QuadrantId;
     label: string;
   }
-
+  
   // quadrants array
   const quadrants: Quadrant[] = [
     {id: "top-left", label: "Top Left"},
@@ -31,7 +31,7 @@ function App() {
   ]
 
   // Mapping between a quadrant id and what shape it represents
-  const shapeMapping = { 
+  const shapeMapping: Record<QuadrantId, string> = { 
     "top-left": "circle",
     "top-right": "hexagon",
     "bottom-left": "square",
@@ -51,7 +51,7 @@ function App() {
   const [draggedShapeID, setDraggedShapeID] = useState<string | null>(null);
 
   // Helper function to render shapes given a quadrant id
-  function renderShapes(quadrantId: string) {
+  function renderShapes(quadrantId: QuadrantId) {
     return shapeLocations
     .filter((shape) => shape.quadrant === quadrantId)
     .map((shape) => 
@@ -72,6 +72,7 @@ function App() {
           {...shape, quadrant: targetQuadrant} : shape
       )
     )
+    setDraggedShapeID(null);
   }
 
   return (
@@ -81,7 +82,7 @@ function App() {
         shapes that are in them, add drag/drop behaviour for each */}
         {quadrants
         .map((quadrant) => 
-          <div className='quadrant' id={`${quadrant.id}`}
+          <div key={quadrant.id} className='quadrant' id={quadrant.id}
             onDragOver={(event) => event.preventDefault()}
             onDrop={() => handleDrop(quadrant.id)}
           >
