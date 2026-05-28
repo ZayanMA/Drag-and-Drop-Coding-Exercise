@@ -39,7 +39,7 @@ function App() {
   };
 
   // useState to store and update shape locations
-  const [shapeLocations, setShapeLocation] = useState<ShapeLocation[]>([
+  const [shapeLocations, setShapeLocations] = useState<ShapeLocation[]>([
     {id: "shape-1", quadrant: "top-left"},
     {id: "shape-2", quadrant: "top-left"},
     {id: "shape-3", quadrant: "top-left"},
@@ -47,11 +47,27 @@ function App() {
     {id: "shape-5", quadrant: "top-left"},
   ]);
 
+  const [draggedShapeID, setDraggedShapeID] = useState<string | null>(null);
+
   function renderShapes(quadrantId: string) {
     return shapeLocations
     .filter((shape) => shape.quadrant === quadrantId)
     .map((shape) => 
-      <div key={shape.id} className={`${shapeMapping[quadrantId]}`} draggable/>
+      <div key={shape.id} className={`${shapeMapping[quadrantId]}`} draggable
+        onDragStart={() => setDraggedShapeID(shape.id)}
+      />
+    )
+  }
+
+  function handleDrop(targetQuadrant: QuadrantId): void {
+    if(draggedShapeID == null) {
+      return;
+    }
+    setShapeLocations((shapeLocations) => 
+      shapeLocations.map((shape) => 
+        shape.id === draggedShapeID ?
+          {...shape, quadrant: targetQuadrant} : shape
+      )
     )
   }
 
@@ -60,7 +76,10 @@ function App() {
       <div className='quadrant-container'>
         {quadrants
         .map((quadrant) => 
-          <div className='quadrant' id={`${quadrant.id}`}>
+          <div className='quadrant' id={`${quadrant.id}`}
+            onDragOver={(event) => event.preventDefault()}
+            onDrop={() => handleDrop(quadrant.id)}
+          >
             {renderShapes(quadrant.id)}
           </div>
         )}
