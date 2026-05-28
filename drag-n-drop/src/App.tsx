@@ -23,7 +23,18 @@ function App() {
   return (
     <>
       <div className='quadrant-container'>
-        <div className='quadrant' id='top-left'>Top Left</div>
+        <div className='quadrant' id='top-left'>
+          Top Left
+
+          {shapeLocations
+            .filter((shape) => shape.quadrant === "top-left")
+            .map((shape) => 
+              <div key={shape.id} className='circle' draggable>
+                {shape.id}
+                </div>
+            )
+          }
+          </div>
         <div className='quadrant' id='top-right'>Top Right</div>
         <div className='quadrant' id='bottom-left'>Bottom Left</div>
         <div className='quadrant' id='bottom-right'>Bottom Right</div>

@@ -24,4 +24,12 @@ html, body, #root {
   justify-content: center;
   border: 1px solid #ccc;
   font-size: 1.5rem;
+  gap: 1rem;
+}
+
+.circle {
+  background-color: forestgreen;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
 }
