@@ -64,8 +64,9 @@ Clone repo:
 git clone https://github.com/ZayanMA/Drag-and-Drop-Coding-Exercise.git
 ```
 
-From root folder, install dependencies:
+From root folder, move to project folder, install dependencies:
 ```bash
+cd drag-n-drop
 npm install
 ```
 
